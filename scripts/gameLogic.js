@@ -1,7 +1,7 @@
 let userWins = 0;
 let computerWins = 0;
 
-let computerPlay = () => {
+const computerPlay = () => {
     const OPTIONS = ["rock", "paper", "scissors"]
     const randomNumber = Math.floor(Math.random() * 3);
     return OPTIONS[randomNumber];
@@ -48,7 +48,7 @@ function playRound(userChoice, computerChoice) {
 
 }
 
-let addUserWin = () => ++userWins;
+const addUserWin = () => ++userWins;
 
 
 function game() {
