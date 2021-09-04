@@ -10,12 +10,13 @@ const computerPlay = () => {
 const displayRoundWinMessage = (userChoice, computerChoice) => console.log(`You win the round! ${userChoice} beats ${computerChoice}`);
 const displayRoundLoseMessage = (userChoice, computerChoice) => console.log(`You lose the round! ${computerChoice} beats ${userChoice}`);
 
-
 function playRound(userChoice, computerChoice) {
 
-
     // All user win conditions in conditional
-    if (userChoice === "rock" && computerChoice === "scissors" || userChoice === "paper" && computerChoice === "rock" || userChoice === "scissors" && computerChoice === "paper") {
+    if (userChoice === "rock" && computerChoice === "scissors" || 
+        userChoice === "paper" && computerChoice === "rock" || 
+        userChoice === "scissors" && computerChoice === "paper") {
+
         displayRoundWinMessage(userChoice, computerChoice);
         userWins++;
     } 
@@ -33,7 +34,6 @@ function playRound(userChoice, computerChoice) {
 
 }
 
-
 function game() {
 
     for (let i = 0; i < 5; i++) {
@@ -41,16 +41,13 @@ function game() {
         playRound(userPlay, computerPlay());
 
         if (i === 4) {
-            
             if (userWins > computerWins) {
                 console.log("Well done - you won the game!")
             } else {
                 userWins < computerWins ? console.log("You lost the game! Better luck next time.") : console.log("The game is a draw!")
             }
-
         }
     }
-
 }
 
 game();
