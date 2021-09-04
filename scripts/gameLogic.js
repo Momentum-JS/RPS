@@ -7,48 +7,31 @@ const computerPlay = () => {
     return OPTIONS[randomNumber];
 }
 
+const displayRoundWinMessage = (userChoice, computerChoice) => console.log(`You win the round! ${userChoice} beats ${computerChoice}`);
+const displayRoundLoseMessage = (userChoice, computerChoice) => console.log(`You lose the round! ${computerChoice} beats ${userChoice}`);
+
+
 function playRound(userChoice, computerChoice) {
 
-    let userWins;
 
-    switch(userChoice) {
-        case "rock":
-            if (computerChoice === "rock") {
-                console.log("Draw. Great minds think alike.");
-            } else if (computerChoice === "paper") {
-                console.log("You lose! Paper beats rock.");
-            } else {
-                console.log("Congrats - you win the round! Rock beats scissors");
-                addUserWin(userWins);
-            }
-            break;
-        case "paper":
-            if (computerChoice === "paper") {
-                console.log("Draw. Great minds think alike.");
-            } else if (computerChoice === "scissors") {
-                console.log("You lose! Scissors beats paper.");
-            } else {
-                console.log("Congrats - you win the round! Paper beats rock");
-                addUserWin(userWins);
-            }
-            break;
-        case "scissors":
-            if (computerChoice === "scissors") {
-                console.log("Draw. Great minds think alike.");
-            } else if (computerChoice === "paper") {
-                console.log("You lose! Paper beats scissors.");
-            } else {
-                console.log("Congrats - you win the round! Scissors beats paper");
-                addUserWin(userWins);
-            }
-            break
-        default:
-            alert("You picked an invalid selection");
+    // All user win conditions in conditional
+    if (userChoice === "rock" && computerChoice === "scissors" || userChoice === "paper" && computerChoice === "rock" || userChoice === "scissors" && computerChoice === "paper") {
+        displayRoundWinMessage(userChoice, computerChoice);
+        userWins++;
+    } 
+    
+    // Draw conditions
+    else if (userChoice === computerChoice) {
+        console.log("It's a draw round. Great minds think alike!")
+    } 
+
+    // All other remaining conditions are computer wins
+    else {
+        displayRoundLoseMessage(userChoice, computerChoice);
+        computerWins++;
     }
 
 }
-
-const addUserWin = () => ++userWins;
 
 
 function game() {
@@ -58,9 +41,16 @@ function game() {
         playRound(userPlay, computerPlay());
 
         if (i === 4) {
-            userWins >= 3 ? alert("CONGRATS! YOU WON") : alert("Sadly you lost - better luck next time!")
-            console.log("userWins: " + userWins);
+            
+            if (userWins > computerWins) {
+                console.log("Well done - you won the game!")
+            } else {
+                userWins < computerWins ? console.log("You lost the game! Better luck next time.") : console.log("The game is a draw!")
+            }
+
         }
     }
 
 }
+
+game();
